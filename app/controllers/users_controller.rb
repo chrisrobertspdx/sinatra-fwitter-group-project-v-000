@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    binding.pry
+    #binding.pry
     #if !!session[:user_id]
       #redirect to '/tweets'
     #end
@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if session[:user_id]
-      redirect to '/tweets'
-    end
+    #if session[:user_id]
+    #  redirect to '/tweets'
+    #end
     erb :'/users/login'
   end
 
