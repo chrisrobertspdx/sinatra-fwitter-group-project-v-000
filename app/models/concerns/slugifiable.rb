@@ -1,7 +1,7 @@
 module Slugifiable
   module InstanceMethods
     def slug
-      self.name.split(" ").map!{|e| e.downcase}.join("-")
+      self.username.split(" ").map!{|e| e.downcase}.join("-")
     end
   end
   module ClassMethods
@@ -12,4 +12,5 @@ module Slugifiable
       self.all.find{|e| e.slug == slug}
     end
   end
+
 end
