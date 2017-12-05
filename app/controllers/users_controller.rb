@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 
   get '/signup' do
     #binding.pry
-    #if !!session[:user_id]
-      #redirect to '/tweets'
-    #end
+    if !!session[:user_id]
+      redirect to '/tweets'
+    end
     erb :'/users/create_user'
   end
 
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     #binding.pry
     if user.save
       #binding.pry
+      session[:user_id] = user.id
       redirect to "/tweets"
     else
       #binding.pry
@@ -26,9 +27,9 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    #if session[:user_id]
-    #  redirect to '/tweets'
-    #end
+    if !!session[:user_id]
+      redirect to '/tweets'
+    end
     erb :'/users/login'
   end
 
@@ -56,8 +57,15 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    session.clear
-    redirect '/'
+    if !!session[:user_id]
+      session.clear
+    end
+    redirect '/login'
+  end
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 
 end

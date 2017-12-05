@@ -1,1 +1,9 @@
 <h1>Tweets</h1>
+<h2>Welcome, <%= @user.username %>
+<a href="/tweets/new">New Tweet</a>
+
+<ul>
+<% Tweet.all.each {|t| %>
+  <li><%= t.content %><br> by <a href="/users/<%= t.user_id %>">Author</a></li>
+<% } %>
+</ul>
